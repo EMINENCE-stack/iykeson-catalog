@@ -31,6 +31,17 @@ window.IYKESON_CONFIG = {
 
   // Logo image link (Cloudinary).
   LOGO: "https://res.cloudinary.com/c4z9mxuq/image/upload/v1791933470/IYKESON_LOGO_WITH_WHITE_BG.png",
+  SITE_URL: "https://eminence-stack.github.io/iykeson-catalog/",
+  CITY: "Akure",
+  REGION: "Ondo State",
+  PHONE_INTL: "+2348141663494",
+  MAP_QUERY: "7.2498910, 5.1988290",
+
+  BRANDS: [
+    { name: "Iykeson", text: "Building materials: tiles, doors, WCs, bathroom accessories and plumbing fittings." },
+    { name: "Best Life Doors", text: "Our own quality door brand." },
+    { name: "Best Life Interior", text: "Interior design and finishing by Best Life." }
+  ],
 
   CURRENCY: "₦",
   TV_SECONDS_PER_SLIDE: 8
