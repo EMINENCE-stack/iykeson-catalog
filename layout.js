@@ -26,7 +26,7 @@
   const footer = document.getElementById("site-footer");
   if (footer) footer.innerHTML = `
   <footer><div class="wrap">
-    <div>&copy; ${new Date().getFullYear()} ${esc(CFG.BUSINESS_NAME)}</div>
+    <div>&copy; ${new Date().getFullYear()} ${esc(CFG.BUSINESS_NAME)}${CFG.EMAIL ? ` &nbsp;·&nbsp; <a href="mailto:${esc(CFG.EMAIL)}">${esc(CFG.EMAIL)}</a>` : ""}</div>
     <div><a href="screen.html?choose=1">Shop screens (staff)</a></div>
   </div></footer>
   <a class="float-wa" href="${generalWhatsApp()}" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">${WA_ICON}</a>`;

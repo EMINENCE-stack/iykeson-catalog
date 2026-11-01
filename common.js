@@ -27,10 +27,10 @@
   const pick = (obj, names) => { for (const n of names) if (obj[n] !== undefined && obj[n] !== "") return obj[n]; return ""; };
 
   const KNOWN = {
-    code: ["productcode", "code", "sku", "itemcode", "id", "productid"],
+    code: ["productnumber", "productno", "number", "no", "productcode", "code", "sku", "itemcode", "id", "productid"],
     name: ["name", "productname", "item", "itemname", "title", "product"],
     category: ["category", "categories", "type", "producttype", "group"],
-    price: ["price", "unitprice", "amount", "cost", "pricen", "pricengn"],
+    price: ["price", "unitprice", "amount", "pricen", "pricengn"],
     description: ["description", "details", "about", "notes", "info"],
     status: ["status", "availability", "available", "stock", "instock"],
     featured: ["featured", "feature", "highlight", "bestseller", "popular"]
@@ -43,6 +43,8 @@
     const used = new Set(Object.values(KNOWN).flat());
     const isImg = k => /^(image|img|photo|picture|pic)/.test(k);
     const isVid = k => /^video/.test(k);
+    // Columns that must never be shown to customers (supplier codes, cost, staff notes...)
+    const isPrivate = k => /^(private|internal|staff|supplier|cost|costprice|buying|hidden|manufacturer|factory|vendor|profit)/.test(k);
     const products = [];
 
     rows.slice(1).forEach((r, idx) => {
@@ -65,7 +67,7 @@
       const specs = [];
       keys.forEach((k, i) => {
         const v = (r[i] || "").trim();
-        if (!k || !v || used.has(k) || isImg(k) || isVid(k)) return;
+        if (!k || !v || used.has(k) || isImg(k) || isVid(k) || isPrivate(k)) return;
         specs.push([headers[i], v]);
       });
 
@@ -138,9 +140,9 @@
       "Hello " + CFG.BUSINESS_NAME + ",",
       "I'm interested in this item:",
       "Product: " + p.name,
-      "Code: " + p.code
+      "Product No.: " + p.code
     ];
-    if (p.price) lines.push("Price: " + money(p.price));
+    if (p.price) lines.push("Price: " + money(p.price)); else lines.push("Please send me the price.");
     lines.push("Link: " + productURL(p.code));
     return "https://wa.me/" + (CFG.WHATSAPP || "") + "?text=" + encodeURIComponent(lines.join("\n"));
   }

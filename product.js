@@ -1,5 +1,5 @@
 (function () {
-  const { CFG, esc, img, money, videoInfo, loadProducts, whatsappURL, WA_ICON, cardHTML } = window.Iyk;
+  const { CFG, esc, img, money, videoInfo, loadProducts, whatsappURL, generalWhatsApp, WA_ICON, cardHTML } = window.Iyk;
   const params = new URLSearchParams(location.search);
   const code = params.get("code"), fromStore = params.get("from") === "store";
   const main = document.getElementById("main");
@@ -15,7 +15,8 @@
     // gallery items: photos first, then videos
     const items = p.images.map(u => ({ t: "img", u })).concat(p.videos.map(u => ({ t: "vid", v: videoInfo(u) })));
     const back = fromStore ? `<a href="store.html">← Back to store display</a>` : `<a href="index.html">Home</a> / <a href="index.html#products">Products</a>`;
-    const wa = whatsappURL(p);
+    const wa = whatsappURL(p);   // fills in THIS product
+    const mainLabel = p.price ? (CFG.PRODUCT_BUTTON || "Enquire about this product") : (CFG.NO_PRICE_BUTTON || "Get this price on WhatsApp");
     main.innerHTML = `
       <div class="crumbs">${back} / ${esc(p.name)}</div>
       <article class="pdp">
@@ -26,20 +27,20 @@
         <div>
           <span class="cat-label">${esc(p.category)}</span>
           <h1>${esc(p.name)}</h1>
-          <div class="${p.price ? "big-price" : "big-price ask"}">${p.price ? esc(money(p.price)) : "Ask for price"}</div>
+          ${p.price ? `<div class="big-price">${esc(money(p.price))}</div>` : `<div class="big-price ask">${esc(CFG.PRICE_ON_REQUEST || "Price on request")}<small>Message us on WhatsApp for today's price</small></div>`}
           <span class="pill ${p.out ? "out" : ""}">${p.out ? "Currently out of stock" : "Available"}</span>
           ${p.description ? `<p class="desc">${esc(p.description)}</p>` : ""}
           <table class="specs"><tbody>
-            <tr><th>Product code</th><td>${esc(p.code)}</td></tr>
+            <tr><th>Product No.</th><td>${esc(p.code)}</td></tr>
             ${p.specs.map(s => `<tr><th>${esc(s[0])}</th><td>${esc(s[1])}</td></tr>`).join("")}
           </tbody></table>
           <div class="cta">
-            <a class="btn btn-wa" href="${wa}" target="_blank" rel="noopener">${WA_ICON} Enquire on WhatsApp</a>
+            <a class="btn btn-wa" href="${wa}" target="_blank" rel="noopener">${WA_ICON} ${esc(mainLabel)}</a>
             <p class="note">Opens WhatsApp with this product already filled in, so we know exactly which item you mean.</p>
           </div>
         </div>
       </article>
-      <div class="sticky-cta"><a class="btn btn-wa" href="${wa}" target="_blank" rel="noopener">${WA_ICON} Enquire on WhatsApp</a></div>`;
+      <div class="sticky-cta"><a class="btn btn-wa" href="${generalWhatsApp()}" target="_blank" rel="noopener">${WA_ICON} ${esc(CFG.GENERAL_BUTTON || "Chat with us on WhatsApp")}</a></div>`;
 
     const stage = document.getElementById("stage"), thumbs = document.getElementById("thumbs");
     function show(i) {

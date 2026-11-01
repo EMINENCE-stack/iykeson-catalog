@@ -29,7 +29,7 @@
       <div class="media">${media}</div>
       <div class="text"><div class="kicker">${esc(p.category)}</div><h2>${esc(p.name)}</h2>
         <div class="meta">Product No. ${esc(p.code)}${p.specs.slice(0, 3).map(s => ` · ${esc(s[1])}`).join("")}</div>
-        <div class="price ${p.price ? "" : "ask"}">${p.price ? esc(money(p.price)) : "Ask in store for price"}</div>
+        <div class="price ${p.price ? "" : "ask"}">${p.price ? esc(money(p.price)) : esc(CFG.PRICE_ON_REQUEST || "Price on request")}</div>
         <div class="cta-line">Ask our team, or WhatsApp us the product number <b>${esc(p.code)}</b></div></div></div>`;
   }
 
