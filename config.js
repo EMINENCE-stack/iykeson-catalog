@@ -27,7 +27,7 @@ window.IYKESON_CONFIG = {
   HERO_POSITION: "center 40%",
 
   // Photo of shop front (Cloudinary link)
-  SHOP_IMAGE: "https://res.cloudinary.com/c4z9mxuq/image/upload/v1791930887/shop_pics.jpg",
+  SHOP_IMAGE: "https://res.cloudinary.com/c4z9mxuq/image/upload/v1792104184/shop_front.jpg",
   // Google Maps link to shop
   MAPS_LINK: "https://maps.app.goo.gl/34Vu428SUD3dq5qh9",
 
