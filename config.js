@@ -29,13 +29,13 @@ window.IYKESON_CONFIG = {
   // Photo of shop front (Cloudinary link)
   SHOP_IMAGE: "https://res.cloudinary.com/c4z9mxuq/image/upload/v1791930887/shop_pics.jpg",
   // Google Maps link to shop
-  MAPS_LINK: "",
+  MAPS_LINK: "https://maps.app.goo.gl/34Vu428SUD3dq5qh9",
 
   // Logo image link (Cloudinary).
   LOGO: "https://res.cloudinary.com/c4z9mxuq/image/upload/v1791933470/IYKESON_LOGO_WITH_WHITE_BG.png",
 
   // ---------- Find us on Google & maps ----------
-  // Full public address of this website (no file name at the end). CHECK this matches your real site address.
+  // Full public address of this website (no file name at the end).
   SITE_URL: "https://eminence-stack.github.io/iykeson-catalog/",
   CITY: "Akure",
   REGION: "Ondo State",
@@ -53,8 +53,7 @@ window.IYKESON_CONFIG = {
   ],
 
   // Email address shown at the bottom of the home page
-  EMAIL: "iykeson76@gmail.com
-",
+  EMAIL: "iykeson76@gmail.com",
 
   // What to show when a product has no price in the sheet (card = small text on the product tile, request = on the product page)
   PRICE_ON_CARD: "View details",
